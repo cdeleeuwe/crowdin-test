@@ -1,0 +1,42 @@
+[build]
+publish = "public"
+command = "make prod-build"
+base = "bertytech/"
+ignore = "git diff --quiet HEAD^ HEAD -- ."
+
+[context.production.environment]
+HUGO_VERSION = "0.73.0"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
+GIT_LFS_ENABLED = "true"
+
+[context.split1]
+command = 'make prod-build HUGO_OPTS="--enableGitInfo"'
+
+[context.split1.environment]
+HUGO_VERSION = "0.73.0"
+HUGO_ENV = "production"
+GIT_LFS_ENABLED = "true"
+
+[context.deploy-preview]
+command = 'make prod-build HUGO_OPTS="-b $DEPLOY_PRIME_URL --enableGitInfo -v"'
+
+[context.deploy-preview.environment]
+HUGO_VERSION = "0.73.0"
+GIT_LFS_ENABLED = "true"
+
+[context.branch-deploy]
+command = 'make prod-build HUGO_OPTS="-b $DEPLOY_PRIME_URL -v"'
+
+[context.branch-deploy.environment]
+HUGO_VERSION = "0.73.0"
+GIT_LFS_ENABLED = "true"
+
+[context.next.environment]
+HUGO_ENABLEGITINFO = "true"
+
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+
+[[plugins]]
+  package = "netlify-plugin-hugo-cache-resources"
