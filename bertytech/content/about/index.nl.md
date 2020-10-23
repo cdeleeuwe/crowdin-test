@@ -1,6 +1,6 @@
 ---
 title: Over ons
-subtitle: We build tools to enhance communication freedom
+subtitle: We bouwen instrumenten aan om de vrijheid van communicatie te vergroten
 hclass: bg-blue gradient bg-about
 image: "berty_about.png"
 menu:
